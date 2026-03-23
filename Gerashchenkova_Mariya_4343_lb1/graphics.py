@@ -158,8 +158,6 @@ def run_experiment(n_start=2, n_end=20, repeats=5):
         "time_min": [],
         "time_max": [],
         "steps": [],
-        "prune_best": [],
-        "prune_bound": [],
         "prune_memo": [],
         "states_pushed": [],
         "states_popped": [],
@@ -169,8 +167,8 @@ def run_experiment(n_start=2, n_end=20, repeats=5):
     }
 
     print(
-        "N | time_avg | time_min | time_max | steps | prune_best | "
-        "prune_bound | prune_memo | pushed | popped | max_stack | memo | answer"
+        "N | time_avg | time_min | time_max | steps |  "
+        " prune_memo | pushed | popped | max_stack | memo | answer"
     )
 
     for n in range(n_start, n_end + 1):
@@ -194,8 +192,6 @@ def run_experiment(n_start=2, n_end=20, repeats=5):
         data["time_min"].append(min_time)
         data["time_max"].append(max_time)
         data["steps"].append(last_stats["steps"])
-        data["prune_best"].append(last_stats["prunes_best"])
-        data["prune_bound"].append(last_stats["prunes_bound"])
         data["prune_memo"].append(last_stats["prunes_memo"])
         data["states_pushed"].append(last_stats["states_pushed"])
         data["states_popped"].append(last_stats["states_popped"])
@@ -209,8 +205,6 @@ def run_experiment(n_start=2, n_end=20, repeats=5):
             f"{min_time:8.6f} | "
             f"{max_time:8.6f} | "
             f"{last_stats['steps']:5d} | "
-            f"{last_stats['prunes_best']:10d} | "
-            f"{last_stats['prunes_bound']:11d} | "
             f"{last_stats['prunes_memo']:10d} | "
             f"{last_stats['states_pushed']:6d} | "
             f"{last_stats['states_popped']:6d} | "
@@ -320,6 +314,5 @@ plot_stack(data)
 plot_answer_sizes(data)
 plot_states(data)
 plot_memo(data)
-plot_all_in_one(data)
 
 
